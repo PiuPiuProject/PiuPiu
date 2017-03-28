@@ -1,19 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package beans;
 
+import entities.User;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
-/**
- *
- * @author sergiodiaz
- */
+
 @Stateless
 public class SesBean {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    @PersistenceUnit
+    EntityManagerFactory emf;
+    
+    public boolean insertUser(User u) {
+        if (!issetUser(u)) {
+            EntityManager em = emf.createEntityManager();
+            em.persist(u);
+            em.flush();
+            em.close();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean issetUser(User u) {
+        EntityManager em = emf.createEntityManager();
+        User encontrada = em.find(User.class, u.getName());
+        em.close();
+        return encontrada != null;
+    }
+    
+    
+    
+    
 }
