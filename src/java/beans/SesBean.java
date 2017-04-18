@@ -31,9 +31,5 @@ public class SesBean {
         User encontrada = em.find(User.class, u.getName());
         em.close();
         return encontrada != null;
-    }
-    
-    
-    
-    
+    }   
 }

@@ -5,12 +5,10 @@
  */
 package servlet;
 
-
 import beans.SesBean;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author sergiodiaz
- */
-@WebServlet(name = "CreateAccount", urlPatterns = {"/CreateAccount"})
+
+
 public class CreateAccount extends HttpServlet {
 
     @EJB
-    SesBean myBean;
+    SesBean miEjb;
+
+    public static final String STATUS_OK = "teamOk";
+    public static final String STATUS_ERROR = "teamError";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,42 +37,29 @@ public class CreateAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreatePokemon</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Create Pokemon</h1>");
-            out.println("<form action=\"Pokemon\" method =\"GET\">");
-            out.println("Nombre: <input type=\"text\" name=\"name\">");
-            out.println("Tipo: <input type=\"text\" name=\"type\">");
-            out.println("Habilidad: <input type=\"text\" name=\"ability\">");
-            out.println("Ataque: <input type=\"number\" name=\"attack\">");
-            out.println("Defensa: <input type=\"number\" name=\"defense\">");
-            out.println("Rapidez: <input type=\"number\" name=\"speed\">");
-            out.println("Salud: <input type=\"number\" name=\"life\">");
-            out.println("Entrenador: <select name=\"trainer\">");
-            try{
-                List<User> users = myBean.selectUsers();
-                for(User u : users){
-                    out.println("<option value="+u.getName()+">"+u.getName()+"</option>");
-                }
-            }catch(Exception error){
-                error.printStackTrace();
-            }
-            out.println("</select>");
-            out.println("<input type=\"submit\" value=\"Create\">");
-            out.println("</form>");
-            out.println("<form action=\"index.html\"><input type=\"submit\" value=\"Cancelar\"></form>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+            response.setContentType("text/html;charset=UTF-8");
+            if("Create".equals(request.getParameter("usuario"))){
+                String username = request.getParameter("username");
+                String surname = request.getParameter("surname");
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                System.out.println("tumejor");
+                User u = new User(username, surname, name, email, password);
 
+                if (miEjb.insertUser(u)) {
+                    request.setAttribute("status", STATUS_OK);
+                } else {
+                    request.setAttribute("status", STATUS_ERROR);
+                }
+                request.getRequestDispatcher("/CreateAccountFinal.jsp").forward(request, response);
+            }else{
+                System.out.println("no entro. tu mejor");
+            }
+                
+
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
