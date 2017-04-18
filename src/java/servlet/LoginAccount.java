@@ -18,13 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-public class CreateAccount extends HttpServlet {
+public class LoginAccount extends HttpServlet {
 
     @EJB
     SesBean miEjb;
 
-    public static final String STATUS_OK = "userOK";
-    public static final String STATUS_ERROR = "userERROR";
+    public static final String STATUS_OK = "loginOK";
+    public static final String STATUS_ERROR = "loginERROR";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,7 +52,7 @@ public class CreateAccount extends HttpServlet {
                 } else {
                     request.setAttribute("status", STATUS_ERROR);
                 }
-                request.getRequestDispatcher("/CreateAccountFinal.jsp").forward(request, response);
+                request.getRequestDispatcher("/LoginFinal.jsp").forward(request, response);
             }else{
                 System.out.println("no entro. tu mejor");
             }

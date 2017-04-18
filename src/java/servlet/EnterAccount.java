@@ -5,27 +5,21 @@
  */
 package servlet;
 
-import beans.SesBean;
-import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author DAM
+ */
+@WebServlet(name = "EnterAccount", urlPatterns = {"/EnterAccount"})
+public class EnterAccount extends HttpServlet {
 
-
-public class CreateAccount extends HttpServlet {
-
-    @EJB
-    SesBean miEjb;
-
-    public static final String STATUS_OK = "userOK";
-    public static final String STATUS_ERROR = "userERROR";
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,29 +31,21 @@ public class CreateAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("text/html;charset=UTF-8");
-            if("Create".equals(request.getParameter("usuario"))){
-                String username = request.getParameter("username");
-                String surname = request.getParameter("surname");
-                String name = request.getParameter("name");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                System.out.println("tumejor");
-                User u = new User(username, surname, name, email, password);
-
-                if (miEjb.insertUser(u)) {
-                    request.setAttribute("status", STATUS_OK);
-                } else {
-                    request.setAttribute("status", STATUS_ERROR);
-                }
-                request.getRequestDispatcher("/CreateAccountFinal.jsp").forward(request, response);
-            }else{
-                System.out.println("no entro. tu mejor");
-            }
-                
-
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Entrar</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Entrar</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
