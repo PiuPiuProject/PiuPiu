@@ -40,12 +40,7 @@ public class LoginAccount extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             if("Create".equals(request.getParameter("usuario"))){
                 String username = request.getParameter("username");
-                String surname = request.getParameter("surname");
-                String name = request.getParameter("name");
-                String email = request.getParameter("email");
                 String password = request.getParameter("password");
-                System.out.println("tumejor");
-                User u = new User(username, surname, name, email, password);
 
                 if (miEjb.insertUser(u)) {
                     request.setAttribute("status", STATUS_OK);
