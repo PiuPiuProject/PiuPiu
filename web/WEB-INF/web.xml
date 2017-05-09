@@ -8,6 +8,10 @@
         <servlet-name>LoginAccount</servlet-name>
         <servlet-class>servlet.LoginAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreatePiu</servlet-name>
+        <servlet-class>servlet.CreatePiu</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateAccount</servlet-name>
         <url-pattern>/CreateAccount</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>LoginAccount</servlet-name>
         <url-pattern>/LoginAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreatePiu</servlet-name>
+        <url-pattern>/CreatePiu</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

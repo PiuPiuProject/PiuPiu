@@ -1,6 +1,7 @@
 
 package beans;
 
+import entities.Piu;
 import entities.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,6 +26,15 @@ public class SesBean {
             return false;
         }
     }
+    
+    public boolean insertPiu(Piu p) {
+        EntityManager em = emf.createEntityManager();
+        em.persist(p);
+        em.flush();
+        em.close();
+        return true;
+    }
+
     
     public boolean issetUser(User u) {
         EntityManager em = emf.createEntityManager();
