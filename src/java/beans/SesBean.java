@@ -36,17 +36,20 @@ public class SesBean {
     public User existName(String username){
         EntityManager em = emf.createEntityManager();
         User finded = em.find(User.class, username);
-        
-        if(){
-            
+        if(finded != null){
+            return finded;
+        }else{
+            return null;
         }
-        User 
     }
     
     public boolean correctUser(String username, String password){
         EntityManager em = emf.createEntityManager();
-        if(){
-            
+        User user = existName(username);
+        if(user.getPassword().equals(password)){
+            return true;
+        }else{
+            return false;
         }
     }
 }

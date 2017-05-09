@@ -38,21 +38,18 @@ public class LoginAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
-            if("Create".equals(request.getParameter("usuario"))){
+            
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
 
-                if (miEjb.insertUser(u)) {
+                if (miEjb.correctUser(username, password)) {
                     request.setAttribute("status", STATUS_OK);
+                    System.out.println("Correct User");
                 } else {
                     request.setAttribute("status", STATUS_ERROR);
+                    System.out.println("Incorrect User");
                 }
                 request.getRequestDispatcher("/LoginFinal.jsp").forward(request, response);
-            }else{
-                System.out.println("no entro. tu mejor");
-            }
-                
-
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
