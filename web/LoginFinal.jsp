@@ -20,6 +20,6 @@
         <% } else if (status.equals(LoginAccount.STATUS_ERROR)) { %>
         <p>Login imposible.</p>
         <% } %>
-        <a href="index.html">Main menu</a>
+        <a href="profile.html">Profile page.</a>
     </body>
 </html>
