@@ -14,12 +14,12 @@
     </head>
     <body>
         <%
-            String status = (String) request.getAttribute("status");
-            if (status.equals(LoginAccount.STATUS_OK)) { %>
+            String user = (String) session.getAttribute("user");
+            if (user != null) { %>
         <p>Login succesfull.</p> 
-        <% } else if (status.equals(LoginAccount.STATUS_ERROR)) { %>
+        <% } else { %>
         <p>Login imposible.</p>
         <% } %>
-        <a href="profile.html">Profile page.</a>
+        <a href="Profile.jsp">Profile page.</a>
     </body>
 </html>

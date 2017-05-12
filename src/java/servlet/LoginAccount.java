@@ -49,7 +49,9 @@ public class LoginAccount extends HttpServlet {
                     request.setAttribute("status", STATUS_ERROR);
                     System.out.println("Incorrect User");
                 }
-                request.getRequestDispatcher("/LoginFinal.jsp").forward(request, response);
+                request.getSession(true).setAttribute("user", username);
+                response.sendRedirect(request.getContextPath() + "/LoginFinal.jsp");
+//                request.getRequestDispatcher("/LoginFinal.jsp").forward(request, response);
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
