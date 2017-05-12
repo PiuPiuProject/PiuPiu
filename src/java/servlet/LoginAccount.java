@@ -6,9 +6,11 @@
 package servlet;
 
 import beans.SesBean;
+import entities.Piu;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,8 +52,9 @@ public class LoginAccount extends HttpServlet {
                     System.out.println("Incorrect User");
                 }
                 request.getSession(true).setAttribute("user", username);
-                response.sendRedirect(request.getContextPath() + "/LoginFinal.jsp");
-//                request.getRequestDispatcher("/LoginFinal.jsp").forward(request, response);
+                List<Piu> pius = miEjb.selectAllPiusUser(username);
+                request.setAttribute("pius", pius);
+                 request.getRequestDispatcher("/Profile.jsp").forward(request, response);
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

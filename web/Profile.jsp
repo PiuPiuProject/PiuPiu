@@ -4,6 +4,8 @@
     Author     : DAM
 --%>
 
+<%@page import="entities.Piu"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,12 +23,29 @@
         <form action="PiuForm.jsp">
             <input type="submit" value="Crear">
         </form>
+        <h1>Your Pius</h1>
+        <table>
+            <tr>
+                <th>Author</th>
+                <th>Text</th>
+                <th>Creation</th>
+            </tr>
+        <% 
+        List<Piu> pius = (List<Piu>) request.getAttribute("pius");
+        for (Piu p : pius) {
+            %>
+            <tr>
+                <td><%= p.getAuthorId() %></td> 
+                <td><%= p.getText() %></td> 
+                <td><%= p.getPubDate() %></td> 
+            </tr>
+        <% }
+        %>
+        </table>
         <% } else {
         %>
         <h1>Error, usuario no validado.</h1>
         <%
     }%>
-        
-        
     </body>
 </html>
