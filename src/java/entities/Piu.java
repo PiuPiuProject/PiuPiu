@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Piu.findAll", query = "SELECT p FROM Piu p")
     , @NamedQuery(name = "Piu.findByPiuId", query = "SELECT p FROM Piu p WHERE p.piuId = :piuId")
+    , @NamedQuery(name = "Piu.findByAuthor", query = "SELECT p FROM Piu p WHERE p.authorId = :authorId")
     , @NamedQuery(name = "Piu.findByText", query = "SELECT p FROM Piu p WHERE p.text = :text")
     , @NamedQuery(name = "Piu.findByPubDate", query = "SELECT p FROM Piu p WHERE p.pubDate = :pubDate")})
 public class Piu implements Serializable {
