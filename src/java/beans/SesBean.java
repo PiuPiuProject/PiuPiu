@@ -25,7 +25,8 @@ public class SesBean {
         } else {
             return false;
         }
-    }
+    } 
+    
     
     public boolean insertPiu(Piu p) {
         EntityManager em = emf.createEntityManager();

@@ -27,6 +27,7 @@ public class CreatePiu extends HttpServlet {
     public static final String STATUS_OK = "teamOk";
     public static final String STATUS_ERROR = "teamError";
     
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,14 +41,17 @@ public class CreatePiu extends HttpServlet {
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
             
-                System.out.print("ETROOOOOOOOOOOOO");
+                System.out.print("ENTROOOOOOOOOOOOO");
 
             
-            if("Create".equals(request.getParameter("Piu"))){
+            String user = (String) request.getSession().getAttribute("user");
+            
+            if(user!=null){
                 
                 String text = request.getParameter("text");
                 
-                Piu p = new Piu(0, text, new Date());
+                User u = miEjb.existName(user);
+                Piu p = new Piu(0, text, new Date(), u);
                 
                 if (miEjb.insertPiu(p)) {
                     request.setAttribute("status", STATUS_OK);

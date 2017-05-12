@@ -17,10 +17,10 @@ Final
         <%
             String status = (String) request.getAttribute("status");
             if (status.equals(CreatePiu.STATUS_OK)) { %>
-        <p>User registered.</p> 
+        <p>Piu registered.</p> 
         <% } else if (status.equals(CreatePiu.STATUS_ERROR)) { %>
         <p>User already exists.</p>
         <% } %>
-        <a href="index.html">Main menu</a>
+        <a href="Profile.jsp">User Profile</a>
     </body>
 </html>

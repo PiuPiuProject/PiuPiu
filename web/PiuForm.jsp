@@ -12,6 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            String username = (String) session.getAttribute("user");
+            
+            
+        %>
         <h1>Create Piu</h1>
             <form action="CreatePiu" method ="POST">
             

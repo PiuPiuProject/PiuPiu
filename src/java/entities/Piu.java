@@ -78,6 +78,15 @@ public class Piu implements Serializable {
         this.pubDate = pubDate;
     }
 
+    public Piu(Integer piuId, String text, Date pubDate, User authorId) {
+        this.piuId = piuId;
+        this.text = text;
+        this.pubDate = pubDate;
+        this.authorId = authorId;
+    }
+    
+
+
     public Integer getPiuId() {
         return piuId;
     }
