@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -44,6 +46,7 @@ public class Piu implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "piu_id")
@@ -77,6 +80,12 @@ public class Piu implements Serializable {
         this.piuId = piuId;
         this.text = text;
         this.pubDate = pubDate;
+    }
+    
+    public Piu(String text, Date pubDate, User authorId) {
+        this.text = text;
+        this.pubDate = pubDate;
+        this.authorId = authorId;
     }
 
     public Piu(Integer piuId, String text, Date pubDate, User authorId) {
