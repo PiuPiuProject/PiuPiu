@@ -94,6 +94,10 @@ public class Piu implements Serializable {
         this.pubDate = pubDate;
         this.authorId = authorId;
     }
+
+    public Piu(String text, Date date, Piu p, String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 

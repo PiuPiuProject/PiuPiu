@@ -1,6 +1,7 @@
 
 package beans;
 
+import entities.Comment;
 import entities.Piu;
 import entities.User;
 import java.util.List;
@@ -55,6 +56,24 @@ public class SesBean {
         }
     }
     
+    public Piu existPiu(int piu_id){
+        EntityManager em = emf.createEntityManager();
+        Piu finded = em.find(Piu.class, piu_id);
+        if(finded != null){
+            return finded;
+        }else{
+            return null;
+        }
+    }
+    
+    public boolean insertComment(Comment c) {
+        EntityManager em = emf.createEntityManager();
+        em.persist(c);
+        em.flush();
+        em.close();
+        return true;
+    }
+    
     public boolean correctUser(String username, String password){
         EntityManager em = emf.createEntityManager();
         User user = existName(username);
@@ -68,4 +87,5 @@ public class SesBean {
     public List<Piu> selectAllPiusUser(String author) {
         return emf.createEntityManager().createNamedQuery("Piu.findByAuthor").setParameter("authorId", existName(author)).getResultList();
     }
+    
 }

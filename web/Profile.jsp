@@ -38,7 +38,15 @@
                 <td><%= p.getAuthorId() %></td> 
                 <td><%= p.getText() %></td> 
                 <td><%= p.getPubDate() %></td> 
-            </tr>
+                <% 
+                if(pius.size() >= 1){%>
+                <td>
+                    <form action="CommentForm.jsp">
+                        <input type="submit" value="Comment this Piu">
+                    </form>
+                </td>
+              <%  } %>
+            </tr> 
         <% }
         %>
         </table>
