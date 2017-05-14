@@ -49,6 +49,11 @@ public class LikePiu implements Serializable {
     public LikePiu() {
     }
 
+    public LikePiu(Piu piuId, User authorId) {
+        this.piuId = piuId;
+        this.authorId = authorId;
+    }
+
     public LikePiu(Integer likeId) {
         this.likeId = likeId;
     }

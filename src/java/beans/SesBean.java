@@ -2,6 +2,7 @@
 package beans;
 
 import entities.Comment;
+import entities.LikePiu;
 import entities.Piu;
 import entities.User;
 import java.util.List;
@@ -33,6 +34,14 @@ public class SesBean {
     public boolean insertPiu(Piu p) {
         EntityManager em = emf.createEntityManager();
         em.persist(p);
+        em.flush();
+        em.close();
+        return true;
+    }
+    
+    public boolean insertLike(LikePiu l) {
+        EntityManager em = emf.createEntityManager();
+        em.persist(l);
         em.flush();
         em.close();
         return true;
@@ -86,6 +95,10 @@ public class SesBean {
     
     public List<Piu> selectAllPiusUser(String author) {
         return emf.createEntityManager().createNamedQuery("Piu.findByAuthor").setParameter("authorId", existName(author)).getResultList();
+    }
+    
+    public List<Piu> selectAllPius(int id) {
+        return emf.createEntityManager().createNamedQuery("Piu.findAll").setParameter("Piu_id", existId(id)).getResultList();
     }
     
 }

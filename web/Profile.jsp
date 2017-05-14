@@ -4,6 +4,7 @@
     Author     : DAM
 --%>
 
+<%@page import="entities.User"%>
 <%@page import="entities.Piu"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -41,8 +42,20 @@
                 <% 
                 if(pius.size() >= 1){%>
                 <td>
-                    <form action="CommentForm.jsp">
+                    <form action="CommentForm.jsp" method="POST">
+                        <%= p.getAuthorId() %>
+                        <%= p.getPiuId() %>       
+                        List<Piu> piu = (List<Piu>) request.getAttribute("piu");
+
                         <input type="submit" value="Comment this Piu">
+                    </form>
+                </td>
+                
+                <td>
+                    <form action="CreateLike">
+                        <%  User u = p.getAuthorId(); %>
+                        <%  int id = p.getPiuId(); %>
+                        <input type="submit" value="like">
                     </form>
                 </td>
               <%  } %>

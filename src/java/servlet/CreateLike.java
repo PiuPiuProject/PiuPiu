@@ -6,13 +6,13 @@
 package servlet;
 
 import beans.SesBean;
-import entities.Comment;
+import entities.LikePiu;
 import entities.Piu;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-public class CreateComment extends HttpServlet {
+public class CreateLike extends HttpServlet {
     
     @EJB
     SesBean miEjb;
@@ -42,30 +42,23 @@ public class CreateComment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
-            String username = (String) request.getSession().getAttribute("user");
-
-                int piu = (int) request.getAttribute("piu_id");   
-                if(piu >= 0){
-                    System.out.println("no entro");
-                } else {
-        
-                    System.out.println(piu + " - PPPPPPPPPPPPPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASSSSSSSSSSSSSSSSSSSSSSSSS");
-                    String user = (String) request.getAttribute("user");          
-
-                    String text = request.getParameter("text");
-
-                    Piu p = miEjb.existPiu(piu);
-                    User u = miEjb.existName(user);
-                    Comment c = new Comment(text, new Date(), p, u);
-
-                    if (miEjb.insertComment(c)) {
-                        request.setAttribute("status", STATUS_OK);
-                    } else {
-                        request.setAttribute("status", STATUS_ERROR);
-                    }
-
-                    request.getRequestDispatcher("/CreateCommentFinal.jsp").forward(request, response);
-                }
+          
+            User u = (User) request.getAttribute("u");
+            int id = (int) request.getAttribute("id");
+            
+            
+            
+            LikePiu l = new LikePiu(id,u);
+            
+            
+            if (miEjb.insertLike(l)) {
+                request.setAttribute("status", STATUS_OK);
+            } else {
+                request.setAttribute("status", STATUS_ERROR);
+            }
+                
+            request.getRequestDispatcher("/Profile.jsp").forward(request, response);
+          
                 
 
     }
