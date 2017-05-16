@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html>-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -17,8 +17,8 @@
             
             
         %>
-        <h1>Create Piu</h1>
-            <form action="CreatePiu" method ="POST">
+        <h1>Create comment</h1>
+            <form action="CreateComment" method ="POST">
             
             Text: <input type="text" name="text">
 
