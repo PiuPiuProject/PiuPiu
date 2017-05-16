@@ -42,19 +42,17 @@
                 <% 
                 if(pius.size() >= 1){%>
                 <td>
-                    <form action="CommentForm.jsp" method="POST">
-                        <%= p.getAuthorId() %>
-                        <%= p.getPiuId() %>       
-                        List<Piu> piu = (List<Piu>) request.getAttribute("piu");
-
+                    <form action="CreateComment" method="POST">
+                        <input type="text" name="text">
+                        <input type="number" name="idpiu" value="<%= p.getPiuId() %>">
+                        <input type="text" name="user" value="<%= p.getAuthorId().getUsername() %>">
                         <input type="submit" value="Comment this Piu">
                     </form>
                 </td>
                 
                 <td>
                     <form action="CreateLike">
-                        <%  User u = p.getAuthorId(); %>
-                        <%  int id = p.getPiuId(); %>
+                        <input type="hidden" name="idpiu" value="<%= p.getPiuId() %>">
                         <input type="submit" value="like">
                     </form>
                 </td>

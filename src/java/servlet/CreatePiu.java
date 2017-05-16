@@ -41,7 +41,6 @@ public class CreatePiu extends HttpServlet {
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
             
-                System.out.print("ENTROOOOOOOOOOOOO");
 
             
             String user = (String) request.getSession().getAttribute("user");
@@ -51,7 +50,7 @@ public class CreatePiu extends HttpServlet {
                 String text = request.getParameter("text");
                 
                 User u = miEjb.existName(user);
-                Piu p = new Piu(text, new Date(), u);
+                Piu p = new Piu(0, text, new Date(), u);
                 
                 if (miEjb.insertPiu(p)) {
                     request.setAttribute("status", STATUS_OK);

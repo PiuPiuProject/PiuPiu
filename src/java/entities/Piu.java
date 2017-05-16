@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Piu.findAll", query = "SELECT p FROM Piu p")
+    , @NamedQuery(name = "Piu.findByAuthor", query = "SELECT p FROM Piu p WHERE p.authorId = :authorId")
     , @NamedQuery(name = "Piu.findByPiuId", query = "SELECT p FROM Piu p WHERE p.piuId = :piuId")
     , @NamedQuery(name = "Piu.findByText", query = "SELECT p FROM Piu p WHERE p.text = :text")
     , @NamedQuery(name = "Piu.findByPubDate", query = "SELECT p FROM Piu p WHERE p.pubDate = :pubDate")})
@@ -80,22 +81,12 @@ public class Piu implements Serializable {
         this.pubDate = pubDate;
     }
     
-    public Piu(String text, Date pubDate, User authorId) {
+    public Piu(Integer piuId, String text, Date pubDate, User authorId) {
+        this.piuId = piuId;
         this.text = text;
         this.pubDate = pubDate;
         this.authorId = authorId;
     }
-
-    public Piu(String text, Date pubDate, User authorId) {
-        this.text = text;
-        this.pubDate = pubDate;
-        this.authorId = authorId;
-    }
-
-    public Piu(String text, Date date, Piu p, String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
    
 
     public Integer getPiuId() {

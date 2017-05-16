@@ -5,6 +5,8 @@ Final
     Author     : DAM
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="entities.Piu"%>
 <%@page import="servlet.CreatePiu"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +23,6 @@ Final
         <% } else if (status.equals(CreatePiu.STATUS_ERROR)) { %>
         <p>User already exists.</p>
         <% } %>
-        <a href="Profile.jsp">User Profile</a>
+        <a href="cargarlista">User Profile</a>
     </body>
 </html>

@@ -43,10 +43,12 @@ public class CreateLike extends HttpServlet {
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
           
-            User u = (User) request.getAttribute("u");
-            int id = (int) request.getAttribute("id");
-            Piu p = miEjb.selectPiuId(id);
             
+            int id = (int) request.getAttribute("idpiu");   
+            String user = (String) request.getAttribute("user");
+
+            Piu p = miEjb.existPiu(id);
+            User u = miEjb.existName(user);
             
             LikePiu l = new LikePiu(p,u);
             

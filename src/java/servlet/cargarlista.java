@@ -7,27 +7,25 @@ package servlet;
 
 import beans.SesBean;
 import entities.Piu;
-import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-public class LoginAccount extends HttpServlet {
-
+/**
+ *
+ * @author DAM
+ */
+public class cargarlista extends HttpServlet {
     @EJB
     SesBean miEjb;
 
     public static final String STATUS_OK = "loginOK";
     public static final String STATUS_ERROR = "loginERROR";
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,25 +37,21 @@ public class LoginAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("text/html;charset=UTF-8");
-            
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-
-                if (miEjb.correctUser(username, password)) {
-                    request.setAttribute("status", STATUS_OK);
-                    System.out.println("Correct User");
-                } else {
-                    request.setAttribute("status", STATUS_ERROR);
-                    System.out.println("Incorrect User");
-                }
-                request.getSession(true).setAttribute("user", username);
-                List<Piu> pius = miEjb.selectAllPiusUser(username);
-
-                request.setAttribute("pius", pius);
-                request.getRequestDispatcher("/Profile.jsp").forward(request, response);
-    }
     
+    
+    
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String user = (String) request.getSession().getAttribute("user");
+            
+            List<Piu> pius = miEjb.selectAllPiusUser(user);
+
+            request.setAttribute("pius", pius);
+            request.getRequestDispatcher("/Profile.jsp").forward(request, response);
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -82,10 +82,18 @@ public class Comment implements Serializable {
         this.authorId = authorId;
     }
 
+    public Comment(Integer commentId, String texwt, Date pubDate, Piu piuId, User authorId) {
+        this.commentId = commentId;
+        this.texwt = texwt;
+        this.pubDate = pubDate;
+        this.piuId = piuId;
+        this.authorId = authorId;
+    }
+
     public Integer getCommentId() {
         return commentId;
     }
-
+    
     public void setCommentId(Integer commentId) {
         this.commentId = commentId;
     }

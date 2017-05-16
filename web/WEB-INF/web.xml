@@ -20,6 +20,10 @@
         <servlet-name>CreateLike</servlet-name>
         <servlet-class>servlet.CreateLike</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>cargarlista</servlet-name>
+        <servlet-class>servlet.cargarlista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateAccount</servlet-name>
         <url-pattern>/CreateAccount</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CreateLike</servlet-name>
         <url-pattern>/CreateLike</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cargarlista</servlet-name>
+        <url-pattern>/cargarlista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
