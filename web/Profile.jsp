@@ -43,23 +43,55 @@
                 if(pius.size() >= 1){%>
                 <td>
                     <form action="CommentForm.jsp" method="POST">
-                        <%= p.getAuthorId() %>
-                        <%= p.getPiuId() %>       
-                        List<Piu> piu = (List<Piu>) request.getAttribute("piu");
-
                         <input type="submit" value="Comment this Piu">
                     </form>
                 </td>
-                
                 <td>
                     <form action="CreateLike">
-                        <%  User u = p.getAuthorId(); %>
-                        <%  int id = p.getPiuId(); %>
                         <input type="submit" value="like">
                     </form>
                 </td>
               <%  } %>
-            </tr> 
+            </tr>
+        <% }
+        %>
+        </table>
+        <h1>Your Followers</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        <% 
+        List<User> followers = (List<User>) request.getAttribute("followers");
+        for (User u : followers) {
+            %>
+            <tr>
+                <td><%= u.getName() %></td> 
+                <td><%= u.getUsername() %></td>
+            </tr>
+        <% }
+        %>
+        </table>
+        </table>
+        <h1>Your Followees</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        <% 
+        //List<User> followees = (List<User>) request.getAttribute("followers");
+        for (User u : followers) {
+            %>
+            <tr>
+                <td><%= u.getName() %></td> 
+                <td>
+                    <form action="Follow.jsp" method="POST">
+                        <input type="submit" value="Follow">
+                    </form>
+                </td>
+            </tr>
         <% }
         %>
         </table>

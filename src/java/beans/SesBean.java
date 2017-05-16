@@ -101,6 +101,16 @@ public class SesBean {
         return (Piu) emf.createEntityManager().createNamedQuery("Piu.findByPiuId").setParameter("piuId", piuId);
     }
     
+    public List<User> selectUserFollowers(String username){
+        EntityManager em = emf.createEntityManager();
+        User finded = em.find(User.class, username);
+        if(finded != null){
+            return (List<User>) finded.getUserCollection();
+        }else{
+            return null;
+        }
+    }
+    
 //    public List<Piu> selectAllPius(int id) {
 //        return emf.createEntityManager().createNamedQuery("Piu.findAll").setParameter("Piu_id", existId(id)).getResultList();
 //    }
