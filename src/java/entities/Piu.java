@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.metamodel.SingularAttribute;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sergiodiaz
+ * @author DAM
  */
 @Entity
 @Table(name = "piu")
@@ -37,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Piu.findAll", query = "SELECT p FROM Piu p")
     , @NamedQuery(name = "Piu.findByPiuId", query = "SELECT p FROM Piu p WHERE p.piuId = :piuId")
-    , @NamedQuery(name = "Piu.findByAuthor", query = "SELECT p FROM Piu p WHERE p.authorId = :authorId")
     , @NamedQuery(name = "Piu.findByText", query = "SELECT p FROM Piu p WHERE p.text = :text")
     , @NamedQuery(name = "Piu.findByPubDate", query = "SELECT p FROM Piu p WHERE p.pubDate = :pubDate")})
 public class Piu implements Serializable {
@@ -79,14 +77,13 @@ public class Piu implements Serializable {
         this.pubDate = pubDate;
     }
 
-    public Piu(Integer piuId, String text, Date pubDate, User authorId) {
-        this.piuId = piuId;
+    public Piu(String text, Date pubDate, User authorId) {
         this.text = text;
         this.pubDate = pubDate;
         this.authorId = authorId;
     }
     
-
+   
 
     public Integer getPiuId() {
         return piuId;
