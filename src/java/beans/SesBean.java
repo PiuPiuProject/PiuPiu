@@ -97,8 +97,12 @@ public class SesBean {
         return emf.createEntityManager().createNamedQuery("Piu.findByAuthor").setParameter("authorId", existName(author)).getResultList();
     }
     
-    public List<Piu> selectAllPius(int id) {
-        return emf.createEntityManager().createNamedQuery("Piu.findAll").setParameter("Piu_id", existId(id)).getResultList();
+    public Piu selectPiuId(int piuId) {
+        return (Piu) emf.createEntityManager().createNamedQuery("Piu.findByPiuId").setParameter("piuId", piuId);
     }
+    
+//    public List<Piu> selectAllPius(int id) {
+//        return emf.createEntityManager().createNamedQuery("Piu.findAll").setParameter("Piu_id", existId(id)).getResultList();
+//    }
     
 }

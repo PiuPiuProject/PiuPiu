@@ -45,10 +45,10 @@ public class CreateLike extends HttpServlet {
           
             User u = (User) request.getAttribute("u");
             int id = (int) request.getAttribute("id");
+            Piu p = miEjb.selectPiuId(id);
             
             
-            
-            LikePiu l = new LikePiu(id,u);
+            LikePiu l = new LikePiu(p,u);
             
             
             if (miEjb.insertLike(l)) {
