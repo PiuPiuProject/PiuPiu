@@ -45,7 +45,7 @@ public class cargarlista extends HttpServlet {
         String user = (String) request.getSession().getAttribute("user");
 
         List<Piu> pius = miEjb.selectAllPiusUser(user);
-
+       
         request.setAttribute("pius", pius);
         request.getRequestDispatcher("/Profile.jsp").forward(request, response);
     }

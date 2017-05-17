@@ -81,14 +81,14 @@
             %>
         </table>
     </table>
-    <h1>Your Followees</h1>
+    <h1>People to Follow</h1>
     <table>
         <tr>
             <th>Name</th>
             <th>Action</th>
         </tr>
         <%
-            //List<User> followees = (List<User>) request.getAttribute("followers");
+            List<User> followees = (List<User>) request.getAttribute("followers");
             for (User u : followers) {
         %>
         <tr>

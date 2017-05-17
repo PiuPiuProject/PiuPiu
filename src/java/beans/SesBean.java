@@ -5,6 +5,7 @@ import entities.Comment;
 import entities.LikePiu;
 import entities.Piu;
 import entities.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -93,6 +94,10 @@ public class SesBean {
         }
     }
     
+    public List<User> selectAllUsers() {
+        return emf.createEntityManager().createNamedQuery("User.findAll").getResultList();
+    }
+    
     public List<Piu> selectAllPiusUser(String author) {
         return emf.createEntityManager().createNamedQuery("Piu.findByAuthor").setParameter("authorId", existName(author)).getResultList();
     }
@@ -111,8 +116,18 @@ public class SesBean {
         }
     }
     
-//    public List<Piu> selectAllPius(int id) {
-//        return emf.createEntityManager().createNamedQuery("Piu.findAll").setParameter("Piu_id", existId(id)).getResultList();
-//    }
+    public List<User> selectUserToFollow(String username){
+        EntityManager em = emf.createEntityManager();
+        User finded = em.find(User.class, username);
+        if(finded != null){
+            return em.createNamedQuery("select u.* from user u where u.username not in  (select f.followee_id from follower f where f.follower_id :username)")
+                    .setParameter("username", username)
+                    .getResultList();
+        }else{
+            return null;
+        }
+    }
+    
+    //select u.* from user u where u.username not in  (select f.followee_id from follower f where f.follower_id = "a")
     
 }
