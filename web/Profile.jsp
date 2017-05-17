@@ -44,14 +44,15 @@
                 <td>
                     <form action="CreateComment" method="POST">
                         <input type="text" name="text">
-                        <input type="number" name="idpiu" value="<%= p.getPiuId()%>">
-                        <input type="text" name="user" value="<%= p.getAuthorId().getUsername()%>">
+                        <input type="hidden" name="idpiu" value="<%= p.getPiuId()%>">
+                        <input type="hidden" name="user" value="<%= p.getAuthorId().getUsername()%>">
                         <input type="submit" value="Comment this Piu">
                     </form>
                 </td>
                 <td>
                     <form action="CreateLike">
                         <input type="hidden" name="idpiu" value="<%= p.getPiuId()%>">
+                        <input type="hidden" name="user" value="<%= p.getAuthorId().getUsername()%>">
                         <input type="submit" value="like">
                     </form>
                 </td>

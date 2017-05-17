@@ -4,6 +4,7 @@
     Author     : DAM
 --%>
 
+<%@page import="servlet.CreateLike"%>
 <%@page import="servlet.CreateAccount"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,12 +16,12 @@
     <body>
         <%
             String status = (String) request.getAttribute("status");
-            if (status.equals(CreateAccount.STATUS_OK)) {             
-                request.getRequestDispatcher("/Profile.jsp").forward(request, response);
-            %>
-        <% } else if (status.equals(CreateAccount.STATUS_ERROR)) { %>
-        <% }             
-        %>
+            if (status.equals(CreateLike.STATUS_OK)) { %>
+        <p>Like ok</p> 
+        <% } else if (status.equals(CreateLike.STATUS_ERROR)) { %>
+        <p>Like error</p>
+        <% } %>
+        <a href="cargarlista">User Profile</a>
 
     </body>
 </html>

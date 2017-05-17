@@ -44,13 +44,13 @@ public class CreateLike extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
           
             
-            int id = (int) request.getAttribute("idpiu");   
-            String user = (String) request.getAttribute("user");
+            int id = Integer.parseInt((String) request.getParameter("idpiu"));
+            String user = (String) request.getParameter("user");
 
             Piu p = miEjb.existPiu(id);
             User u = miEjb.existName(user);
             
-            LikePiu l = new LikePiu(p,u);
+            LikePiu l = new LikePiu(0, p,u);
             
             
             if (miEjb.insertLike(l)) {
@@ -59,7 +59,8 @@ public class CreateLike extends HttpServlet {
                 request.setAttribute("status", STATUS_ERROR);
             }
                 
-            request.getRequestDispatcher("/Profile.jsp").forward(request, response);
+            request.getRequestDispatcher("/CreateLikeFinal.jsp").forward(request, response);
+
           
                 
 
