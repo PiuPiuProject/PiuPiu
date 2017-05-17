@@ -53,8 +53,9 @@ public class LoginAccount extends HttpServlet {
                 }
                 request.getSession(true).setAttribute("user", username);
                 List<Piu> pius = miEjb.selectAllPiusUser(username);
-
+                List<User> followers = miEjb.selectUserFollowers(username);
                 request.setAttribute("pius", pius);
+                request.setAttribute("followers", followers);
                 request.getRequestDispatcher("/Profile.jsp").forward(request, response);
     }
     
