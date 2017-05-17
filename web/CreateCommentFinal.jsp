@@ -18,6 +18,7 @@ Final
             String status = (String) request.getAttribute("status");
             if (status.equals(CreatePiu.STATUS_OK)) { %>
         <p>Comment registered.</p> 
-        <a href="Profile.jsp">User Profile</a>
+        <a href="cargarlista">User Profile</a>
+        <% } %>
     </body>
 </html>

@@ -21,11 +21,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author DAM
  */
 public class cargarlista extends HttpServlet {
+
     @EJB
     SesBean miEjb;
 
     public static final String STATUS_OK = "loginOK";
     public static final String STATUS_ERROR = "loginERROR";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,19 +39,15 @@ public class cargarlista extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-    
-    
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String user = (String) request.getSession().getAttribute("user");
-            
-            List<Piu> pius = miEjb.selectAllPiusUser(user);
 
-            request.setAttribute("pius", pius);
-            request.getRequestDispatcher("/Profile.jsp").forward(request, response);
-        }
+        response.setContentType("text/html;charset=UTF-8");
+        /* TODO output your page here. You may use following sample code. */
+        String user = (String) request.getSession().getAttribute("user");
+
+        List<Piu> pius = miEjb.selectAllPiusUser(user);
+
+        request.setAttribute("pius", pius);
+        request.getRequestDispatcher("/Profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
