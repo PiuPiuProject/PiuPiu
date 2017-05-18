@@ -15,12 +15,14 @@
         <h1>Create Account</h1>
             <form action="LoginAccount" method ="POST">
             
-            Username: <input type="text" name="username">
-            Password: <input type="password" name="password">
-            
+                Username: <input type="text" name="username" required><br>
+                <br>
+                Password: <input type="password" name="password" required><br>
+                <br>
+                
             <input type="submit" value="Login" name="Entry">
             </form>
-            <form action="index.html"><input type="submit" value="Cancelar"></form>
+            <form action="index.html"><input type="submit" value="Cancel"></form>
     </body>
 </html>
 

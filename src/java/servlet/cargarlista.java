@@ -7,6 +7,7 @@ package servlet;
 
 import beans.SesBean;
 import entities.Piu;
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -45,8 +46,12 @@ public class cargarlista extends HttpServlet {
         String user = (String) request.getSession().getAttribute("user");
 
         List<Piu> pius = miEjb.selectAllPiusUser(user);
+        List<User> followers = miEjb.selectUserFollowers(user);
+        //List<User> tofollow = miEjb.selectUserToFollow(user);
        
         request.setAttribute("pius", pius);
+        request.setAttribute("followers", followers);
+        //request.setAttribute("tofollow", tofollow);
         request.getRequestDispatcher("/Profile.jsp").forward(request, response);
     }
 

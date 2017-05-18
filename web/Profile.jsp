@@ -46,14 +46,14 @@
                         <input type="text" name="text">
                         <input type="hidden" name="idpiu" value="<%= p.getPiuId()%>">
                         <input type="hidden" name="user" value="<%= p.getAuthorId().getUsername()%>">
-                        <input type="submit" value="Comment this Piu">
+                        <input type="submit" value="Comment">
                     </form>
                 </td>
                 <td>
                     <form action="CreateLike">
                         <input type="hidden" name="idpiu" value="<%= p.getPiuId()%>">
                         <input type="hidden" name="user" value="<%= p.getAuthorId().getUsername()%>">
-                        <input type="submit" value="like">
+                        <input type="submit" value="Like">
                     </form>
                 </td>
                 <%  } %>
@@ -88,14 +88,16 @@
             <th>Action</th>
         </tr>
         <%
-            List<User> followees = (List<User>) request.getAttribute("followers");
+            //List<User> tofollow = (List<User>) request.getAttribute("tofollow");
             for (User u : followers) {
         %>
         <tr>
             <td><%= u.getName()%></td> 
             <td>
-                <form action="Follow.jsp" method="POST">
-                    <input type="submit" value="Follow">
+                <form action="CreateFollower">
+                        <input type="hidden" name="follower_id" value="<%= user %>">
+                        <input type="hidden" name="followee_id" value="<%= u.getUsername()%>">
+                        <input type="submit" value="like">
                 </form>
             </td>
         </tr>

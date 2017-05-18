@@ -45,11 +45,13 @@ public class CreateAccount extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 System.out.println("tumejor");
-                User u = new User(username, surname, name, email, password);
-
-                if (miEjb.insertUser(u)) {
-                    request.setAttribute("status", STATUS_OK);
-                } else {
+                
+                if(miEjb.existUser(username) == false){
+                    User u = new User(username, surname, name, email, password);
+                    if (miEjb.insertUser(u)) {
+                        request.setAttribute("status", STATUS_OK);
+                    }
+                }else if(miEjb.existUser(username) == true){
                     request.setAttribute("status", STATUS_ERROR);
                 }
                 request.getRequestDispatcher("/CreateAccountFinal.jsp").forward(request, response);

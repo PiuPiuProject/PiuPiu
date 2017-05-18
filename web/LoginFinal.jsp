@@ -18,8 +18,8 @@
             if (user != null) { %>
         <p>Login succesfull.</p> 
         <% } else { %>
-        <p>Login imposible.</p>
+        <p>Error, usuario/contraseña incorrectos.</p>
         <% } %>
-        <a href="Profile.jsp">Profile page.</a>
+        <a href="index.html">Main page.</a>
     </body>
 </html>

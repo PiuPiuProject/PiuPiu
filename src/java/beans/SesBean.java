@@ -47,6 +47,14 @@ public class SesBean {
         em.close();
         return true;
     }
+    
+    public boolean insertFollower(User u) {
+        EntityManager em = emf.createEntityManager();
+        em.persist(u);
+        em.flush();
+        em.close();
+        return true;
+    }
 
     
     public boolean issetUser(User u) {
@@ -63,6 +71,16 @@ public class SesBean {
             return finded;
         }else{
             return null;
+        }
+    }
+    
+    public boolean existUser(String username){
+        EntityManager em = emf.createEntityManager();
+        User finded = em.find(User.class, username);
+        if(finded != null){
+            return true;
+        }else{
+            return false;
         }
     }
     
@@ -120,7 +138,7 @@ public class SesBean {
         EntityManager em = emf.createEntityManager();
         User finded = em.find(User.class, username);
         if(finded != null){
-            return em.createNamedQuery("select u.* from user u where u.username not in  (select f.followee_id from follower f where f.follower_id :username)")
+            return em.createNamedQuery("SELECT u FROM User u WHERE u.username NOT IN  (SELECT f.followee_id.getUsername() FROM Follower f WHERE f.follower_id.getUsername() = :username)")
                     .setParameter("username", username)
                     .getResultList();
         }else{

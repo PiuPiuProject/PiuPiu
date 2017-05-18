@@ -43,20 +43,25 @@ public class LoginAccount extends HttpServlet {
             
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-
-                if (miEjb.correctUser(username, password)) {
+                Boolean correct = null;
+                correct = miEjb.correctUser(username, password);
+                
+                if (!correct) {
+                    request.setAttribute("status", STATUS_ERROR);
+                    request.getRequestDispatcher("/LoginFinal.jsp").forward(request, response);
+                } else if(correct){
                     request.setAttribute("status", STATUS_OK);
                     System.out.println("Correct User");
-                } else {
-                    request.setAttribute("status", STATUS_ERROR);
-                    System.out.println("Incorrect User");
+                    request.getSession(true).setAttribute("user", username);
+                    List<Piu> pius = miEjb.selectAllPiusUser(username);
+                    List<User> followers = miEjb.selectUserFollowers(username);
+                    //List<User> tofollow = miEjb.selectUserToFollow(username);
+                    request.setAttribute("pius", pius);
+                    request.setAttribute("followers", followers);
+                    //request.setAttribute("tofollow", tofollow);
+                    request.getRequestDispatcher("/Profile.jsp").forward(request, response);
                 }
-                request.getSession(true).setAttribute("user", username);
-                List<Piu> pius = miEjb.selectAllPiusUser(username);
-                List<User> followers = miEjb.selectUserFollowers(username);
-                request.setAttribute("pius", pius);
-                request.setAttribute("followers", followers);
-                request.getRequestDispatcher("/Profile.jsp").forward(request, response);
+                
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
